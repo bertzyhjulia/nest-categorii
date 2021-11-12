@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Param, Post, Put, Req } from '@nestjs/common';
-import { CategService } from 'src/categ/categ.service';
 import { CreateDtoTodo } from './todo.dto';
 import { TodoService } from './todo.service';
 import { UpdateTodoDto } from './upadate.dto';
@@ -8,7 +7,6 @@ import { UpdateTodoDto } from './upadate.dto';
 export class TodoController {
   constructor(
     private readonly todoService: TodoService,
-    private readonly categService: CategService,
   ) {}
 
   @Get()

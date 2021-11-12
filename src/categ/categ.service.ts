@@ -8,7 +8,7 @@ import { Categs } from './categ.entity';
 export class CategService {
   constructor(
     @InjectRepository(Categs)
-    private readonly categRepository: Repository<Categs>, // private todoRepository: Repository<Todos>, // private todoService: TodoService,
+    private readonly categRepository: Repository<Categs>,
   ) {}
   async createCateg(categDto: CreateDtoCateg) {
     const categ = await this.categRepository.save(categDto);
