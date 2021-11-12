@@ -11,7 +11,8 @@ export class TodoService {
   constructor(
     @InjectRepository(Todos)
     private todoRepository: Repository<Todos>,
-    private categRepository: Repository<Categs>, //private categService: CategService,
+    @InjectRepository(Categs)
+    private categRepository: Repository<Categs>,
   ) {}
   async getAllTodos() {
     return await this.todoRepository.find({ relations: ['name'] });
