@@ -1,14 +1,10 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { TodoService } from 'src/todo/todo.service';
 import { CreateDtoCateg } from './categ.dto';
 import { CategService } from './categ.service';
 
 @Controller('api/categ')
 export class CategController {
-  constructor(
-    private readonly categService: CategService,
-    private readonly todoService: TodoService,
-  ) {}
+  constructor(private readonly categService: CategService) {}
   @Get(':id')
   getOneCateg(@Param('id') id: string) {
     return this.categService.findOneCateg(id);

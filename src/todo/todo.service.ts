@@ -11,21 +11,27 @@ export class TodoService {
   constructor(
     @InjectRepository(Todos)
     private todoRepository: Repository<Todos>,
-    private categRepository: Repository<Categs>, //private categService: CategService,
+    @InjectRepository(Categs)
+    private categRepository: Repository<Categs>,
   ) {}
   async getAllTodos() {
-    return await this.todoRepository.find({ relations: ['name'] });
+    return await this.todoRepository.find({ relations: ['todos'] });
   }
-  async createTodo(todoDto: CreateDtoTodo, categ: Categs) {
+  async createTodo( todoDto: CreateDtoTodo) {
+    const todos = await this.todoRepository.findOne({
+      relations: ['todos'],
+    });
     const newCateg = await this.todoRepository.create({
       ...todoDto,
-      categs: categ,
+      todos
     });
     const todo = await this.todoRepository.save(newCateg);
     return todo;
   }
   async getById(id: string) {
-    const todo = await this.todoRepository.findOne(id, { relations: ['name'] });
+    const todo = await this.todoRepository.findOne(id, {
+      relations: ['todos'],
+    });
     if (todo) {
       return todo;
     }
@@ -33,7 +39,7 @@ export class TodoService {
   async updateTodo(id: number, todo: UpdateTodoDto) {
     await this.todoRepository.update(id, todo);
     const updatedTodo = await this.categRepository.findOne(id, {
-      relations: ['categ'],
+      relations: ['todos'],
     });
     if (updatedTodo) {
       return updatedTodo;

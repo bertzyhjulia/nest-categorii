@@ -1,3 +1,3 @@
 export class CreateDtoCateg {
-  readonly name: string;
+  readonly title: string;
 }

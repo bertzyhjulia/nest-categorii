@@ -10,9 +10,9 @@ export class Categs {
 
   @ApiProperty()
   @Column()
-  name: string;
+  title: string;
 
   @ApiProperty()
-  @OneToMany(() => Todos, (todo) => todo.title)
-  todos: Todos[];
+  @OneToMany(() => Todos, (todo) => todo.todos)
+  name: Todos[];
 }

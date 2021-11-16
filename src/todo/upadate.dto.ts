@@ -1,5 +1,6 @@
+import { Categs } from 'src/categ/categ.entity';
+
 export class UpdateTodoDto {
-  readonly id: number;
   readonly title: string;
-  readonly isCompleted: boolean;
+  readonly todos: Categs;
 }
