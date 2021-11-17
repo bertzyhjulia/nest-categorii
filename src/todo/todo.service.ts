@@ -17,13 +17,13 @@ export class TodoService {
   async getAllTodos() {
     return await this.todoRepository.find({ relations: ['todos'] });
   }
-  async createTodo( todoDto: CreateDtoTodo) {
+  async createTodo(todoDto: CreateDtoTodo) {
     const todos = await this.todoRepository.findOne({
       relations: ['todos'],
     });
     const newCateg = await this.todoRepository.create({
       ...todoDto,
-      todos
+      todos,
     });
     const todo = await this.todoRepository.save(newCateg);
     return todo;
