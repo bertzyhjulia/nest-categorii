@@ -6,5 +6,5 @@ export class CreateDtoTodo {
   readonly title: string;
 
   @ApiProperty()
-  readonly todos: Categs;
+  readonly categ: Categs;
 }

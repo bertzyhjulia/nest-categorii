@@ -13,6 +13,6 @@ export class Categs {
   title: string;
 
   @ApiProperty()
-  @OneToMany(() => Todos, (todo) => todo.todos)
-  name: Todos[];
+  @OneToMany(() => Todos, (todo) => todo.categ)
+  todos: Todos[];
 }

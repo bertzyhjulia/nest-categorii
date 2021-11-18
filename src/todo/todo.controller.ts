@@ -4,8 +4,8 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { CreateDtoTodo } from './todo.dto';
@@ -34,8 +34,11 @@ export class TodoController {
     return await this.todoService.createTodo(createDto);
   }
   @ApiProperty()
-  @Put(':id')
-  async update(@Param('id') id: number, @Body() updateTodoDto: UpdateTodoDto) {
-    return await this.todoService.updateTodo(id, updateTodoDto);
+  @Patch('/:id')
+  async update(@Param('id') id: string, @Body() { title, categ }) {
+    const todo = await this.todoService.getById(id);
+    todo.title = title;
+    todo.categ = categ;
+    return await this.todoService.updateTodo(todo);
   }
 }

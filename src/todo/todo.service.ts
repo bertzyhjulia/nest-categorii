@@ -15,34 +15,21 @@ export class TodoService {
     private categRepository: Repository<Categs>,
   ) {}
   async getAllTodos() {
-    return await this.todoRepository.find({ relations: ['todos'] });
+    return await this.todoRepository.find({ relations: ['categ'] });
   }
   async createTodo(todoDto: CreateDtoTodo) {
-    const todos = await this.todoRepository.findOne({
-      relations: ['todos'],
-    });
-    const newCateg = await this.todoRepository.create({
-      ...todoDto,
-      todos,
-    });
-    const todo = await this.todoRepository.save(newCateg);
-    return todo;
+    const todo = await this.todoRepository.create(todoDto);
+    return await this.todoRepository.save(todo);
   }
   async getById(id: string) {
     const todo = await this.todoRepository.findOne(id, {
-      relations: ['todos'],
+      relations: ['categ'],
     });
     if (todo) {
       return todo;
     }
   }
-  async updateTodo(id: number, todo: UpdateTodoDto) {
-    await this.todoRepository.update(id, todo);
-    const updatedTodo = await this.categRepository.findOne(id, {
-      relations: ['todos'],
-    });
-    if (updatedTodo) {
-      return updatedTodo;
-    }
+  async updateTodo(todo: UpdateTodoDto) {
+    return await this.todoRepository.save(todo);
   }
 }

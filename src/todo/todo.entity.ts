@@ -13,6 +13,6 @@ export class Todos {
   title: string;
 
   @ApiProperty()
-  @ManyToOne(() => Categs, (categ) => categ.name)
-  todos: Categs;
+  @ManyToOne(() => Categs, (categ) => categ.todos)
+  categ: Categs;
 }
