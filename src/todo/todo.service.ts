@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Categs } from 'src/categ/categ.entity';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { CreateDtoTodo } from './todo.dto';
 import { Todos } from './todo.entity';
 import { UpdateTodoDto } from './upadate.dto';
@@ -31,5 +31,23 @@ export class TodoService {
   }
   async updateTodo(todo: UpdateTodoDto) {
     return await this.todoRepository.save(todo);
+  }
+  async getCompletedTodos() {
+    return await this.todoRepository.find({
+      select: ['status'],
+      where: {
+        status: 'completed',
+      },
+      relations: ['categ'],
+    });
+  }
+  async getAnotherTodos() {
+    return await this.todoRepository.find({
+      select: ['status'],
+      where: {
+        status: Not('completed'),
+      },
+      relations: ['categ'],
+    });
   }
 }

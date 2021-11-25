@@ -10,7 +10,6 @@ import {
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { CreateDtoTodo } from './todo.dto';
 import { TodoService } from './todo.service';
-import { UpdateTodoDto } from './upadate.dto';
 
 @ApiTags('api/swagger')
 @Controller('api/todo')
@@ -27,6 +26,7 @@ export class TodoController {
   async getById(@Param('id') id: string) {
     return await this.todoService.getById(id);
   }
+
   @ApiProperty()
   @HttpCode(200)
   @Post()
@@ -40,5 +40,16 @@ export class TodoController {
     todo.title = title;
     todo.categ = categ;
     return await this.todoService.updateTodo(todo);
+  }
+  @ApiProperty()
+  @Get('//another')
+  async getAnotherTodos() {
+    return await this.todoService.getAnotherTodos();
+  }
+
+  @ApiProperty()
+  @Get('//completed')
+  async getCompletedTodos() {
+    return await this.todoService.getCompletedTodos();
   }
 }
