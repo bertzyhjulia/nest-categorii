@@ -52,4 +52,15 @@ export class TodoController {
   async getCompletedTodos() {
     return await this.todoService.getCompletedTodos();
   }
+
+  @ApiProperty()
+  @Get('//num')
+  async get3todo() {
+    return await this.todoService.get3todo();
+  }
+  @ApiProperty()
+  @Get('//categ')
+  async getCateg() {
+    return await this.todoService.getCateg();
+  }
 }

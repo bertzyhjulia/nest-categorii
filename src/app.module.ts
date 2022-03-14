@@ -2,8 +2,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './todo/todo.module';
-import { CategModule } from './categ/categ.module';
+import { Client } from './client/client.entity';
 
 @Module({
   imports: [
@@ -13,9 +12,8 @@ import { CategModule } from './categ/categ.module';
     //     Object.assign(await getConnectionOptions(), {
     //       autoLoadEntities: true,
     //     }),
-    // },
-    TodoModule,
-    CategModule,
+    // }, TypeOrmModule.forFeature([Client])
+    TypeOrmModule.forFeature([Client]),
   ],
   controllers: [AppController],
   providers: [AppService],

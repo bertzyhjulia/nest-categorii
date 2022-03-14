@@ -1,0 +1,35 @@
+.add {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+.card1 {
+  margin-top: 20px;
+  border-color: royalblue;
+  border-width: 2px;
+}
+.text {
+  display: flex;
+  justify-content: center;
+}
+.loc {
+  padding-top: 80px;
+}
+.pagin {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  color: rgb(26, 160, 37);
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-around;
+}
+.ml-3 {
+  margin-left: 10px;
+}
+.circle {
+  height: 250px;
+  width: 250px;
+}

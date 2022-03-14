@@ -14,6 +14,13 @@ export class Todos {
   title: string;
 
   @ApiProperty()
+  @Column()
+  num: number;
+  @ApiProperty()
+  @Column()
+  categId: number;
+
+  @ApiProperty()
   @Column({ type: 'enum', enum: TodoStatus, default: 'inCompleted' })
   status: string;
 

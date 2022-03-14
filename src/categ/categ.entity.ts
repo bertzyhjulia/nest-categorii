@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Todos } from 'src/todo/todo.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Categs {
@@ -14,5 +20,6 @@ export class Categs {
 
   @ApiProperty()
   @OneToMany(() => Todos, (todo) => todo.categ)
+  @JoinColumn({ name: 'todo_id' })
   todos: Todos[];
 }

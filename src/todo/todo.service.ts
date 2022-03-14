@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Categs } from 'src/categ/categ.entity';
 import { Not, Repository } from 'typeorm';
 import { CreateDtoTodo } from './todo.dto';
 import { Todos } from './todo.entity';
@@ -11,8 +10,6 @@ export class TodoService {
   constructor(
     @InjectRepository(Todos)
     private todoRepository: Repository<Todos>,
-    @InjectRepository(Categs)
-    private categRepository: Repository<Categs>,
   ) {}
   async getAllTodos() {
     return await this.todoRepository.find({ relations: ['categ'] });
@@ -50,4 +47,26 @@ export class TodoService {
       relations: ['categ'],
     });
   }
+  async getCateg() {
+    return await this.todoRepository.find({
+      take: 3,
+      where: {
+        categId: 1,
+      },
+      order: {
+        id: 'DESC',
+      },
+      relations: ['categ'],
+    });
+  }
+  async get3todo() {
+    return await this.todoRepository.find({
+      take: 3,
+      order: {
+        num: 'DESC',
+      },
+      relations: ['categ'],
+    });
+  }
+  //async filter()
 }
